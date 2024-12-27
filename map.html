@@ -71,8 +71,8 @@
             <p><strong>视频:</strong>
                 ${location.video ? `<a href="${location.video}" target="_blank">点击观看</a>` : "无"}
             </p>
-            <p><strong>备注:</strong> ${location.notes}</p>
-            <p><strong>人均:</strong> ${location.amount}</p>
+            <p><strong>备注:</strong> ${location.notes ? location.notes : "无"}</p>
+            <p><strong>人均:</strong> ${location.amount ? location.amount : "无"}</p>
             <p><strong>分类:</strong> ${location.category}</p>
             <p><strong>电话:</strong> ${location.phone}</p>
           </div>
