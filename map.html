@@ -68,7 +68,9 @@
           <div style="width: 200px; padding: 10px; font-family: Arial, sans-serif;">
             <h3>${location.store_name}</h3>
             <p><strong>地址:</strong> ${location.address}</p>
-            <p><strong>视频:</strong> <a href="${location.video}" target="_blank">点击观看</a></p>
+            <p><strong>视频:</strong>
+                ${location.video ? `<a href="${location.video}" target="_blank">点击观看</a>` : "无"}
+            </p>
             <p><strong>备注:</strong> ${location.notes}</p>
             <p><strong>人均:</strong> ${location.amount}</p>
             <p><strong>分类:</strong> ${location.category}</p>
