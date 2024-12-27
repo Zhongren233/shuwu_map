@@ -1,70 +1,136 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
-  <title>抱抱美食记-地图可视化</title>
-  <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css"/>
-  <style>
-    html, body, #container {
-      height: 100%;
-      width: 100%;
-    }
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>抱抱美食记-地图可视化</title>
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css"/>
+    <style>
+        html, body, #container {
+            height: 100%;
+            width: 100%;
+        }
 
-    .custom-input-card{
-      width: 18rem;
-    }
+        .custom-input-card {
+            width: 18rem;
+        }
 
-    .custom-input-card .btn:last-child{
-      margin-left: 1rem;
-    }
+        .custom-input-card .btn:last-child {
+            margin-left: 1rem;
+        }
 
-    .content-window-card{
-      position: relative;
-      width: 23rem;
-      padding: 0.75rem 0 0 1.25rem;
-      box-shadow: none;
-      bottom: 0;
-      left: 0;
-    }
+        .content-window-card {
+            position: relative;
+            width: 23rem;
+            padding: 0.75rem 0 0 1.25rem;
+            box-shadow: none;
+            bottom: 0;
+            left: 0;
+        }
 
-    .content-window-card p{
-      height: 2rem;
-    }
-    .amap-icon img{
-      width: 25px;
-      height: 34px;
-    }
-  </style>
+        .content-window-card p {
+            height: 2rem;
+        }
+
+        .amap-icon img {
+            width: 25px;
+            height: 34px;
+        }
+
+
+        /* 样式: 信息框 */
+        .info-box {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 250px;
+            font-family: Arial, sans-serif;
+            z-index: 10;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            overflow-y: auto; /* 内容过长时显示滚动条 */
+        }
+
+        .info-box h3 {
+            font-size: 16px;
+            margin: 0 0 10px 0;
+        }
+
+        .info-box p {
+            margin: 0 0 5px 0;
+            font-size: 14px;
+        }
+
+        .info-box a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .info-box a:hover {
+            text-decoration: underline;
+        }
+
+        /* 展开/收起按钮样式 */
+        .toggle-btn {
+            display: inline-block;
+            margin-top: 10px;
+            color: #007bff;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        /* 隐藏的部分 */
+        .more-info {
+            display: none;
+        }
+    </style>
 </head>
 <body>
 <div id="container"></div>
 
+<!-- 信息框 -->
+<div class="info-box" id="infoBox">
+    <h3>项目相关说明</h3>
+    <p>对杭州探店UP 抱抱美食记 去过的店的数据进一步校正、可视化</p>
+    <div class="more-info">
+        <p><a href="https://github.com/Mother-Ship/baobao_map" target="_blank"><strong>GitHub仓库</strong> </a>
+        </p>
+        <p><strong>数据源: <a href="https://space.bilibili.com/3494372146416178/" target="_blank">抱抱美食记
+            B站主页</a></strong>
+        </p>
+    </div>
+    <span class="toggle-btn" onclick="toggleInfo()">展开</span>
+</div>
+
 <script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=51d9aa83b38d678442c22f0977278632"></script>
 <script type="text/javascript">
-  var map = new AMap.Map("container", {
-    resizeEnable: true,
-    center: [120.209827, 30.246605],  // 默认中心位置
-    zoom: 13
-  });
+    var map = new AMap.Map("container", {
+        resizeEnable: true,
+        center: [120.209827, 30.246605],  // 默认中心位置
+        zoom: 13
+    });
 
-  // 使用 fetch 从 store_data.json 文件加载数据
-  fetch('store_data.json')
-    .then(response => response.json())  // 将响应解析为 JSON
-    .then(locations => {
-      // 遍历JSON数据，创建标记和信息窗口
-      locations.forEach(function(location) {
-        // 将经纬度从字符串转换为数组
-        var position = location.location.split(',').map(function(coord) { return parseFloat(coord); });
+    // 使用 fetch 从 store_data.json 文件加载数据
+    fetch('store_data.json')
+        .then(response => response.json())  // 将响应解析为 JSON
+        .then(locations => {
+            // 遍历JSON数据，创建标记和信息窗口
+            locations.forEach(function (location) {
+                // 将经纬度从字符串转换为数组
+                var position = location.location.split(',').map(function (coord) {
+                    return parseFloat(coord);
+                });
 
-        // 创建标记点
-        var marker = new AMap.Marker({
-          position: position
-        });
+                // 创建标记点
+                var marker = new AMap.Marker({
+                    position: position
+                });
 
-        // 创建自定义HTML内容
-        var content = `
+                // 创建自定义HTML内容
+                var content = `
           <div style="width: 200px; padding: 10px; font-family: Arial, sans-serif;">
             <h3>${location.store_name}</h3>
             <p><strong>地址:</strong> ${location.address}</p>
@@ -78,28 +144,41 @@
           </div>
         `;
 
-        // 创建信息窗口
-        var infoWindow = new AMap.InfoWindow({
-          content: content, // 设置自定义HTML内容
-          offset: new AMap.Pixel(0, -30) // 设置偏移量
+                // 创建信息窗口
+                var infoWindow = new AMap.InfoWindow({
+                    content: content, // 设置自定义HTML内容
+                    offset: new AMap.Pixel(0, -30) // 设置偏移量
+                });
+
+                // 为标记绑定点击事件，点击标记时打开信息窗口
+                marker.on('click', function () {
+                    infoWindow.open(map, marker.getPosition()); // 打开信息窗口并定位到标记位置
+                });
+
+                // 将标记点添加到地图
+                marker.setMap(map);
+            });
+
+            // 自适应地图视图
+            map.setFitView();
+        })
+        .catch(error => {
+            console.error('加载数据失败:', error);
         });
 
-        // 为标记绑定点击事件，点击标记时打开信息窗口
-        marker.on('click', function() {
-          infoWindow.open(map, marker.getPosition()); // 打开信息窗口并定位到标记位置
-        });
+    // 展开/收起信息框内容的功能
+    function toggleInfo() {
+        var moreInfo = document.querySelector('.more-info');
+        var toggleBtn = document.querySelector('.toggle-btn');
 
-        // 将标记点添加到地图
-        marker.setMap(map);
-      });
-
-      // 自适应地图视图
-      map.setFitView();
-    })
-    .catch(error => {
-      console.error('加载数据失败:', error);
-    });
-
+        if (moreInfo.style.display === 'none' || moreInfo.style.display === '') {
+            moreInfo.style.display = 'block';
+            toggleBtn.textContent = '收起';
+        } else {
+            moreInfo.style.display = 'none';
+            toggleBtn.textContent = '展开';
+        }
+    }
 </script>
 </body>
 </html>
