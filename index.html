@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+  <title>自定义样式信息窗体</title>
+  <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css"/>
+  <style>
+    html, body, #container {
+      height: 100%;
+      width: 100%;
+    }
+
+    .custom-input-card{
+      width: 18rem;
+    }
+
+    .custom-input-card .btn:last-child{
+      margin-left: 1rem;
+    }
+
+    .content-window-card{
+      position: relative;
+      width: 23rem;
+      padding: 0.75rem 0 0 1.25rem;
+      box-shadow: none;
+      bottom: 0;
+      left: 0;
+    }
+
+    .content-window-card p{
+      height: 2rem;
+    }
+    .amap-icon img{
+      width: 25px;
+      height: 34px;
+    }
+  </style>
+</head>
+<body>
+<div id="container"></div>
+
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=51d9aa83b38d678442c22f0977278632"></script>
+<script type="text/javascript">
+  var map = new AMap.Map("container", {
+    resizeEnable: true,
+    center: [120.209827, 30.246605],  // 默认中心位置
+    zoom: 13
+  });
+
+  // 使用 fetch 从 store_data.json 文件加载数据
+  fetch('store_data.json')
+    .then(response => response.json())  // 将响应解析为 JSON
+    .then(locations => {
+      // 遍历JSON数据，创建标记和信息窗口
+      locations.forEach(function(location) {
+        // 将经纬度从字符串转换为数组
+        var position = location.location.split(',').map(function(coord) { return parseFloat(coord); });
+
+        // 创建标记点
+        var marker = new AMap.Marker({
+          position: position
+        });
+
+        // 创建自定义HTML内容
+        var content = `
+          <div style="width: 200px; padding: 10px; font-family: Arial, sans-serif;">
+            <h3>${location.store_name}</h3>
+            <p><strong>地址:</strong> ${location.address}</p>
+            <p><strong>视频:</strong> <a href="${location.video}" target="_blank">点击观看</a></p>
+            <p><strong>备注:</strong> ${location.notes}</p>
+            <p><strong>人均:</strong> ${location.amount}</p>
+            <p><strong>分类:</strong> ${location.category}</p>
+            <p><strong>电话:</strong> ${location.phone}</p>
+          </div>
+        `;
+
+        // 创建信息窗口
+        var infoWindow = new AMap.InfoWindow({
+          content: content, // 设置自定义HTML内容
+          offset: new AMap.Pixel(0, -30) // 设置偏移量
+        });
+
+        // 为标记绑定点击事件，点击标记时打开信息窗口
+        marker.on('click', function() {
+          infoWindow.open(map, marker.getPosition()); // 打开信息窗口并定位到标记位置
+        });
+
+        // 将标记点添加到地图
+        marker.setMap(map);
+      });
+
+      // 自适应地图视图
+      map.setFitView();
+    })
+    .catch(error => {
+      console.error('加载数据失败:', error);
+    });
+
+</script>
+</body>
+</html>
