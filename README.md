@@ -8,20 +8,23 @@ UP贴心的给自己去过的店做了表格，很好
 
 于是我根据UP提供的表格，从高德地图获取了所有店铺的经纬度和电话（如果存在的话），将它维护成了结构化的JSON数据。
 
-接下来只需要在高德地图控制台申请个key，就可以把所有的店铺扔在地图里了！
+接下来只需要在[高德地图控制台](https://console.amap.com/dev/index)申请个key，就可以把所有的店铺扔在地图里了！
 
 效果：
 ![image](https://github.com/user-attachments/assets/05d1fa55-9eb3-4951-bde4-6439a313b337)
 
 ### 如何部署
-替换`index.html`里高德地图的key为你自己的key，浏览器打开index.html即可
+- 在[高德地图控制台](https://console.amap.com/dev/index)申请一个有Web端(JS API)服务平台的key
+- 替换`map.html`里`https://webapi.amap.com/maps?v=2.0&key=` 后面高德地图的key为你自己的key
+- 找一个Web服务器并将`store_data.json`和`map.html`放到服务器的根目录 (例如在这两个文件所在目录执行`python -m http.server`)
+- 浏览器打开`map.html`即可
 
 ### 如何贡献内容
 
 #### 获取数据
 首先，如果一次只想补齐单个店铺，那只需要 在`store_data.json`的数组里加一个新的对象，将店铺名称、地址填入对应的字段。
 
-然后登录[高德地图坐标拾取器](https://lbs.amap.com/tools/picker)对店铺进行检索，即可获取经纬度。
+然后登录[高德地图坐标拾取器](https://lbs.amap.com/tools/picker)对店铺进行检索，如果检索不到也可以按地址检索，即可获取经纬度。
 
 然后再从美团、高德之类的找到店铺电话，把经纬度、电话、抱抱的视频地址一起放到这个新对象，保存文件，接下来提交pull request就可以了。
 
