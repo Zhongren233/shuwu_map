@@ -173,8 +173,8 @@
     "store_name": "康康饭店",
     "address": "景芳路172号景芳二区南区",
     "notes": "点评搜不到，30年老店",
-    "video": "",
-    "amount": "",
+    "video": "https://www.bilibili.com/video/BV1tm421V7P4",
+    "amount": "58.4",
     "category": "炒菜",
     "location": "120.202142,30.267486",
     "phone": "0571-86951344;13858132275"
@@ -644,7 +644,7 @@
     "address": "芭园弄61号近江八园(近江地铁站C2口步行340米)",
     "notes": "",
     "video": "https://www.bilibili.com/video/BV1CZ421u7Zi",
-    "amount": "",
+    "amount": "11.67",
     "category": "",
     "location": "120.196842,30.234243",
     "phone": ""
@@ -653,8 +653,8 @@
     "store_name": "正二品东北饺子",
     "address": "新风路326-1号",
     "notes": "",
-    "video": "",
-    "amount": "",
+    "video": "https://www.bilibili.com/video/BV1XZ421M7wz/",
+    "amount": "36.33",
     "category": "",
     "location": "120.205107,30.294517",
     "phone": "13023603140;13023667749"
@@ -663,8 +663,8 @@
     "store_name": "陕西罗家凉皮",
     "address": "景芳二区38号-7",
     "notes": "",
-    "video": "",
-    "amount": "",
+    "video": "https://www.bilibili.com/video/BV1pT421Y76t/",
+    "amount": "22.67",
     "category": "",
     "location": "120.201726,30.269540",
     "phone": ""
@@ -673,8 +673,8 @@
     "store_name": "意诺披萨",
     "address": "紫阳街道江城路557号-1室(近望江门)",
     "notes": "性价比堪比萨莉亚",
-    "video": "",
-    "amount": "",
+    "video": "https://www.bilibili.com/video/BV1gn4y1X7Eu/",
+    "amount": "38.33",
     "category": "",
     "location": "120.175107,30.234147",
     "phone": "0571-86823912"
@@ -1463,8 +1463,8 @@
     "store_name": "抱抱爆炒店",
     "address": "北干街道兴五路68号无限公园121裙房",
     "notes": "江西小炒",
-    "video": "",
-    "amount": "",
+    "video": "https://www.bilibili.com/video/BV19w4m1e7vx/",
+    "amount": "58.93",
     "category": "",
     "location": "120.236541,30.197002",
     "phone": "13777556485"
@@ -1483,8 +1483,8 @@
     "store_name": "早安老刘",
     "address": "建设二路386号-15号",
     "notes": "煎包配美式",
-    "video": "",
-    "amount": "",
+    "video": "https://www.bilibili.com/video/BV1gf421X7rP/",
+    "amount": "16",
     "category": "",
     "location": "120.247149,30.199271",
     "phone": "18258855443"
@@ -1543,8 +1543,8 @@
     "store_name": "永昌三根羊肉馆",
     "address": "牧永线与一钱线交叉口东300米",
     "notes": "有臭豆腐刺身，油炸的超好吃",
-    "video": "",
-    "amount": "",
+    "video": "https://www.bilibili.com/video/BV1Db421i7WE/",
+    "amount": "60",
     "category": "",
     "location": "119.734261,30.031254",
     "phone": "13567125011"
@@ -1728,5 +1728,15 @@
     "category": "",
     "location": "120.180054,30.473805",
     "phone": ""
+  },
+  {
+    "store_name": "老卤熟食",
+    "address": "杭州市上城区景芳路79号",
+    "notes": "香酥鸡",
+    "video": "https://www.bilibili.com/video/BV1A56bYtESs/",
+    "amount": "37",
+    "category": "",
+    "location": "120.212825,30.26719",
+    "phone": "13777875148"
   }
 ]
