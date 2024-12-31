@@ -14,7 +14,7 @@ UP贴心的给自己去过的店做了表格，很好
 ![image](https://github.com/user-attachments/assets/05d1fa55-9eb3-4951-bde4-6439a313b337)
 ### 如果你不想研究申请Key和部署网页
 
-高德地图也有一个[地图小程序]功能(https://lbs.amap.com/api/wia/tutorial/content/import)，可以允许批量导入数据
+高德地图也有一个[地图小程序](https://lbs.amap.com/api/wia/tutorial/content/import) 功能 ，可以允许批量导入数据
 
 我这里提供了一个`convert.py` 文件，可以把`store_data.json`里的数据转换成高德地图地图工作台要求的Excel格式。
 
