@@ -12,14 +12,20 @@ UP贴心的给自己去过的店做了表格，很好
 
 效果：
 ![image](https://github.com/user-attachments/assets/05d1fa55-9eb3-4951-bde4-6439a313b337)
+
 ### 如果你不想研究申请Key和部署网页
 
-高德地图也有一个[地图小程序](https://lbs.amap.com/api/wia/tutorial/content/import) 功能 ，可以允许批量导入数据
+高德地图也有一个[地图小程序](https://wia.amap.com/) （感谢抱抱粉丝群群友@BIG余杰的发掘），可以允许批量导入数据。[（帮助文档）](https://lbs.amap.com/api/wia/tutorial/content/import)
 
 我这里提供了一个`convert.py` 文件，可以把`store_data.json`里的数据转换成高德地图地图工作台要求的Excel格式。
 
-导入后效果：
+可以登录高德地图账号，在[地图小程序](https://wia.amap.com/)里创建组织，然后导入python文件执行产出的Excel文件，然后手机端登录同一个高德账号，在【我的】->【更多工具】->【地图小程序】功能里即可看到所有地点。
+
+导入后PC端查看效果：
 ![image](https://github.com/user-attachments/assets/f3a50257-5d00-43c5-ad1a-cb8c2b9ac356) 
+
+APP端查看效果：
+![acc7dd49fd58930c825ed7130270f429_720](https://github.com/user-attachments/assets/6396c387-6943-44d9-bc49-f9db3b6f93ab)
 
 ### 如何部署
 - 在[高德地图控制台](https://console.amap.com/dev/index)申请一个有Web端(JS API)服务平台的key
