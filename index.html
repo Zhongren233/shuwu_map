@@ -95,32 +95,31 @@
 <div class="info-box" id="infoBox">
     <h3>这是什么？</h3>
     <div class="more-info">
-        <p>对杭州探店UP 抱抱美食记 探店的店铺数据校正并可视化</p>
-        <p><a href="https://github.com/Mother-Ship/baobao_map" target="_blank"><strong>GitHub仓库</strong> </a>
+        <p>对 树屋吃喝指南 的店铺数据校正并可视化</p>
+        <p><a href="https://github.com/Zhongren233/shuwu_map">本仓库地址</a></p>
+        <p>修改自妈船杭州美食地图 <a href="https://github.com/Mother-Ship/baobao_map" target="_blank"><strong>GitHub仓库</strong> </a>
         </p>
-        <p><strong>数据源: <a href="https://space.bilibili.com/3494372146416178/" target="_blank">抱抱美食记
-            B站主页</a></strong>
+        <p><strong>数据源: <a href="https://docs.qq.com/sheet/DUEZIaWR6T1BmWWF4?tab=BB08J2" target="_blank">树屋吃喝指南</a></strong>
         </p>
     </div>
     <span class="toggle-btn" onclick="toggleInfo()">展开</span>
 </div>
-
-<script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=51d9aa83b38d678442c22f0977278632"></script>
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=48ab5000ea9b0fa068048653e8816069"></script>
 <script type="text/javascript">
     var map = new AMap.Map("container", {
         resizeEnable: true,
-        center: [120.209827, 30.246605],  // 默认中心位置
+        center: [120.30, 31.57],  // 默认中心位置
         zoom: 13
     });
 
     // 使用 fetch 从 store_data.json 文件加载数据
-    fetch('store_data.json')
+    fetch('output.json')
         .then(response => response.json())  // 将响应解析为 JSON
         .then(locations => {
             // 遍历JSON数据，创建标记和信息窗口
             locations.forEach(function (location) {
                 // 将经纬度从字符串转换为数组
-                var position = location.location.split(',').map(function (coord) {
+                var position = location.经纬度.split(',').map(function (coord) {
                     return parseFloat(coord);
                 });
 
@@ -132,15 +131,12 @@
                 // 创建自定义HTML内容
                 var content = `
           <div style="width: 200px; padding: 10px; font-family: Arial, sans-serif;">
-            <h3>${location.store_name}</h3>
-            <p><strong>地址:</strong> ${location.address}</p>
-            <p><strong>视频:</strong>
-                ${location.video ? `<a href="${location.video}" target="_blank">点击观看</a>` : "无"}
-            </p>
-            <p><strong>备注:</strong> ${location.notes ? location.notes : "无"}</p>
-            <p><strong>人均:</strong> ${location.amount ? location.amount : "无"}</p>
-            <p><strong>分类:</strong> ${location.category}</p>
-            <p><strong>电话:</strong> ${location.phone}</p>
+            <h3>${location.店铺名称}</h3>
+            <p><strong>地址:</strong> ${location.地址}</p>
+            <p><strong>推荐理由:</strong> ${location.推荐理由 ? "<br>"+location.推荐理由.replaceAll("\n","<br>") : "无"}</p>
+            <p><strong>人均:</strong> ${location.人均价格 ? location.人均价格 : "无"}</p>
+            <p><strong>菜系类型:</strong> ${location.菜系类型}</p>
+            <p><strong>群友锐评:</strong> ${location.群友锐评?"<br>"+location.群友锐评.replaceAll("\n","<br>") : "无"}</p>
           </div>
         `;
 
