@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
-    <title>抱抱美食记-地图可视化</title>
+    <title>树屋美食-地图可视化</title>
     <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css"/>
     <style>
         html, body, #container {
@@ -133,6 +133,7 @@
           <div style="width: 200px; padding: 10px; font-family: Arial, sans-serif;">
             <h3>${location.店铺名称}</h3>
             <p><strong>地址:</strong> ${location.地址}</p>
+            <p><strong>推荐人:</strong> ${location.推荐人}</p>
             <p><strong>推荐理由:</strong> ${location.推荐理由 ? "<br>"+location.推荐理由.replaceAll("\n","<br>") : "无"}</p>
             <p><strong>人均:</strong> ${location.人均价格 ? location.人均价格 : "无"}</p>
             <p><strong>菜系类型:</strong> ${location.菜系类型}</p>
